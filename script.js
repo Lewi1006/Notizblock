@@ -12,17 +12,39 @@ let contentRef = document.getElementById('content');
 contentRef.innerHTML = ""; 
 
 for(let i = 0; i < notes.length; i++){
-    const note = notes[i];
-    contentRef.innerHTML += getNoteTemplate(note);
-
+    contentRef.innerHTML += getNoteTemplate(i);
 }
 }
 
 // add notes
-function getNoteTemplate(note){
-    return `<p>+ ${note}</p>`;
+function getNoteTemplate(i){
+    return `<p>+ ${notes[i]}  <button onclick="deleteNote(${i})">x</button> </p>`;
 }
 
-// delete notes
+// add notes
+// input field --> user defines input
+// read input
+// save input --> add input to notes array
+// display input
 
+function addNote(){
+    let noteInputRef = document.getElementById('note_input');
+    let noteInput = noteInputRef.value;  
+
+    notes.push(noteInput)
+    
+}
+
+
+
+
+// delete notes
+// which note must be deleted
+// when must the note be deleted 
+// update displayed notes
+ 
+function deleteNote(i){
+     notes.splice(i, 1);
+     renderNotes(); 
+}
 // archive notes
