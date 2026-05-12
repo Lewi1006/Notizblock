@@ -31,7 +31,8 @@ function addNote(){
     let noteInputRef = document.getElementById('note_input');
     let noteInput = noteInputRef.value;  
 
-    notes.push(noteInput)
+    notes.push(noteInput);
+    
     
 }
 
