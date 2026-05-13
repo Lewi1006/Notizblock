@@ -3,6 +3,9 @@
 
 let notes = ['clean kitchen','book train ticket' ];
 
+// trash
+let trashNotes = [];
+
 // define where notes are displayed
 // when are notes displayed
 
@@ -14,6 +17,18 @@ contentRef.innerHTML = "";
 for(let i = 0; i < notes.length; i++){
     contentRef.innerHTML += getNoteTemplate(i);
 }
+}
+
+
+
+// function for trash
+function renderTrashNotes(){
+    let trashContentRef = document.getElementById('trash_content');
+    trashContentRef.innerHTML = "";
+
+    for(let j = 0; j < trashNotes.length; j++){
+        trashContentRef.innerHTML += getNoteTemplate(j);
+    }
 }
 
 // add notes
