@@ -32,8 +32,9 @@ function addNote(){
     let noteInput = noteInputRef.value;  
 
     notes.push(noteInput);
-    
-    
+
+    renderNotes();
+    noteInputRef.value = "";
 }
 
 
