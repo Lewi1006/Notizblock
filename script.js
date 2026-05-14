@@ -54,20 +54,6 @@ function renderPermanentlyDeleted(){
 
 
 
-// add notes 
-function getNoteTemplate(i){
-    return `<p>+ title: ${notesTitles[i]} --> ${notes[i]} <button onclick="pushNoteToTrash(${i})">x</button> </p>`;
-}
-
-// add to trash 
-function getTrashNoteTemplate(j){
-    return `<p>+ title: ${trashNotesTitles[j]} -->  ${trashNotes[j]}<button onclick ="permanentlyDelete(${j})">x</button> </p>`;
-}
-
-// permanently delete
-function getPermanentlyDeletedTemplate(k){
-    return `<p>+ ${permanentlyDeleted[k]}<button onclick ="permanentlyDelete(${k})">x</button> </p>`;
-}
 
 
 // add notes input field --> user defines input
