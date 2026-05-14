@@ -1,9 +1,10 @@
 // display notes:
 // I need notes to display --> in an array
-
+let notesTitles = ['To-do','Reminder' ];
 let notes = ['clean kitchen','book train ticket' ];
 
 // trash array
+let trashNotesTitles = [];
 let trashNotes = [];
 
 
@@ -42,23 +43,26 @@ function renderPermanentlyDeleted(){
     permanentlyDeletedRef.innerHTML = "";
 
     for(let k = 0; k < permanentlyDeleted.length; k++){
-        permanentlyDeletedRef.innerHTML += getPermanentlyDeletedTemplate(j);
+        permanentlyDeletedRef.innerHTML += getPermanentlyDeletedTemplate(k);
     }
 }
 
-// add notes
+
+
+
+// add notes 
 function getNoteTemplate(i){
-    return `<p>+ ${notes[i]}  <button onclick="pushNoteToTrash(${i})">x</button> </p>`;
+    return `<p>+ title: ${notesTitles[i]} --> ${notes[i]} <button onclick="pushNoteToTrash(${i})">x</button> </p>`;
 }
 
 // add to trash 
 function getTrashNoteTemplate(j){
-    return `<p> + ${trashNotes[j]}<button onclick ="permanentlyDelete(${j})">x</button> </p>`;
+    return `<p>+ title: ${trashNotesTitles[j]} -->  ${trashNotes[j]}<button onclick ="permanentlyDelete(${j})">x</button> </p>`;
 }
 
 // permanently delete
 function getPermanentlyDeletedTemplate(k){
-    return `<p> + ${permanentlyDeleted[k]}<button onclick ="permanentlyDelete(${k})">x</button> </p>`;
+    return `<p>+ ${permanentlyDeleted[k]}<button onclick ="permanentlyDelete(${k})">x</button> </p>`;
 }
 
 
@@ -72,6 +76,8 @@ function addNote(){
     let noteInput = noteInputRef.value;  
 
     notes.push(noteInput);
+
+    // saveToLocalStorage();
 
     renderNotes();
     noteInputRef.value = "";
@@ -87,9 +93,13 @@ function addNote(){
  
 function pushNoteToTrash(i){
      let trashNote = notes.splice(i, 1);
-     trashNotes.push(trashNote); 
+     trashNotes.push(trashNote[0]); 
+
+    let trashNoteTitle = notesTitles.splice(i, 1);
+     trashNotesTitles.push(trashNoteTitle[0]); 
+
      renderNotes(); 
-     renderTrashNotes();
+     renderTrashNotes(); 
 }
 
 // permanently delete note 
@@ -100,5 +110,13 @@ function permanentlyDelete(k){
     renderTrashNotes();
     renderPermanentlyDeleted();
 }
-
+ 
 // archive notes
+
+function saveToLocalStorage(){
+
+}
+
+function getFromLocalStorage(){
+
+}
