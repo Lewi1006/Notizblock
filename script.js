@@ -15,6 +15,10 @@ let permanentlyDeleted = [];
 // when are notes displayed
 
 function renderNotes(){
+
+getFromLocalStorage();
+
+
 let contentRef = document.getElementById('content');
 
 contentRef.innerHTML = ""; 
@@ -77,11 +81,11 @@ function addNote(){
 
     notes.push(noteInput);
 
-    // saveToLocalStorage();
+    saveToLocalStorage();
 
     renderNotes();
     noteInputRef.value = "";
-}
+} 
 
 
 
@@ -114,9 +118,14 @@ function permanentlyDelete(k){
 // archive notes
 
 function saveToLocalStorage(){
-
+localStorage.setItem("notes",JSON.stringify(notes));
 }
 
 function getFromLocalStorage(){
+const storedNotes = localStorage.getItem("notes");
+let myNewArr = JSON.parse(storedNotes);
 
+if(myNewArr !== null) {
+   notes = myNewArr;
+}
 }
