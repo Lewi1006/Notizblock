@@ -65,20 +65,20 @@ function renderPermanentlyDeleted() {
 // display input
 
 function addNote() {
-let noteTitleInputRef = document.getElementById("note_input_title");
+  let noteTitleRef = document.getElementById("note_input_title");
   let noteInputRef = document.getElementById("note_input");
 
-  let noteTitleInput = noteTitleInputRef.value;
+  let noteTitle = noteTitleRef.value;
   let noteInput = noteInputRef.value;
 
-  notesTitles.push(noteTitleInput);
+  notesTitles.push(noteTitle);
   notes.push(noteInput);
 
   saveToLocalStorage();
 
   renderNotes();
 
-  noteTitleInputRef.value ="";
+  noteTitleRef.value = "";
   noteInputRef.value = "";
 }
 
@@ -96,12 +96,7 @@ function pushNoteToArchive(i) {
   renderArchiveNotes();
 }
 
-// push notes to trash
-// which note must be deleted
-// when must the note be deleted
-// update displayed notes
-
-function pushNoteToTrash(a) {
+function pushArchiveToTrash(a) {
   let trashNoteTitle = archiveNotesTitles.splice(a, 1);
   trashNotesTitles.push(trashNoteTitle[0]);
 
@@ -112,16 +107,33 @@ function pushNoteToTrash(a) {
   renderTrashNotes();
 }
 
+// push notes to trash
+// which note must be deleted
+// when must the note be deleted
+// update displayed notes
+
+function pushNoteToTrash(i) {
+  let trashNoteTitle = notesTitles.splice(i, 1);
+  trashNotesTitles.push(trashNoteTitle[0]);
+
+  let trashNote = notes.splice(i, 1);
+  trashNotes.push(trashNote[0]);
+
+  renderNotes();
+  renderTrashNotes();
+}
+
 // permanently delete note
 
 function permanentlyDelete(k) {
+  let deletedNoteTitle = trashNotesTitles.splice(k, 1);
+  permanentlyDeletedTitles.push(deletedNoteTitle[0]);
+
   let deletedNote = trashNotes.splice(k, 1);
-  permanentlyDeleted.push(deletedNote);
+  permanentlyDeleted.push(deletedNote[0]);
   renderTrashNotes();
   renderPermanentlyDeleted();
 }
-
-
 
 function saveToLocalStorage() {
   localStorage.setItem("notes", JSON.stringify(notes));

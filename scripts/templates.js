@@ -22,7 +22,7 @@ function getArchiveNoteTemplate(a){
          <h3>${archiveNotesTitles[a]}</h3>
         <p>${archiveNotes[a]}</p>
         <div class="button-wrapper">
-        <button onclick ="permanentlyDelete(${a})">x</button>
+        <button onclick ="pushArchiveToTrash(${a})">x</button>
         <button onclick="pushNoteToArchive(${a})">A</button>
         </div>
     </div>
